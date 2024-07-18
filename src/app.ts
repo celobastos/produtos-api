@@ -9,6 +9,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api', productRoutes);
 
+
+app.get('/', (req, res) => {
+  console.log('Rota raiz acessada');
+  res.send('API is running');
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
