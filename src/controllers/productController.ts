@@ -14,8 +14,10 @@ interface Product extends RowDataPacket {
 export const getProducts = async (req: Request, res: Response) => {
   try {
     const [rows] = await db.query<Product[]>('SELECT * FROM produtos');
+    console.log('Produtos encontrados:', rows);
     res.json(rows);
   } catch (err) {
+    console.error('Erro ao buscar produtos:', err);
     res.status(500).json({ error: 'Failed to fetch products' });
   }
 };
@@ -27,11 +29,14 @@ export const getProductById = async (req: Request, res: Response) => {
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Product not found' });
     }
+    console.log('Produto encontrado:', rows[0]);
     res.json(rows[0]);
   } catch (err) {
+    console.error('Erro ao buscar produto:', err);
     res.status(500).json({ error: 'Failed to fetch product' });
   }
 };
+
 
 export const createProduct = async (req: Request, res: Response) => {
   const { nome, descricao, preco, imagem_url } = req.body;  
