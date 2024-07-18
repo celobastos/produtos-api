@@ -7,8 +7,11 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api', productRoutes);
 
+app.use('/api', (req, res, next) => {
+  console.log(`Requisição recebida na rota: ${req.url}`);
+  next();
+}, productRoutes);
 
 app.get('/', (req, res) => {
   console.log('Rota raiz acessada');
