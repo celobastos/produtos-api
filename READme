@@ -1,0 +1,58 @@
+# Produtos API
+
+Esta é uma API de gerenciamento de produtos construída com Node.js, Express, TypeScript e MySQL. A API permite criar, ler, atualizar e excluir produtos em um banco de dados MySQL. A aplicação também está configurada para ser implantada no Heroku.
+
+## Tecnologias Utilizadas
+
+- Node.js
+- Express
+- TypeScript
+- MySQL
+- Heroku (para deploy)
+- dotenv (para gerenciamento de variáveis de ambiente)
+- cors (para habilitar CORS)
+- body-parser (para parsing de requests)
+- ts-node-dev (para desenvolvimento com TypeScript)
+
+
+## O banco de dados segue o formato:
+CREATE DATABASE produtosdb;
+
+USE produtosdb;
+
+CREATE TABLE produtos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  preco DECIMAL(10, 2) NOT NULL,
+  data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+## Configuração do Ambiente de Desenvolvimento
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/seu-usuario/produtos-api.git
+cd produtos-api
+npm install
+
+Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis:
+DB_HOST=seu_host_do_banco_de_dados
+DB_USER=seu_usuario_do_banco_de_dados
+DB_PASSWORD=sua_senha_do_banco_de_dados
+DB_NAME=nome_do_seu_banco_de_dados
+
+npm run build
+npm start
+O servidor estará rodando em http://localhost:3000.
+Endpoints da API
+GET /api/produtos - Retorna todos os produtos
+GET /api/produtos/:id - Retorna um produto específico pelo ID
+POST /api/produtos - Cria um novo produto
+PUT /api/produtos/:id - Atualiza um produto existente pelo ID
+DELETE /api/produtos/:id - Exclui um produto pelo ID
+
+Todas as rotas estão funcionando localmente, contudo não consegui fazer o deploy a tempo no heroku.
+
